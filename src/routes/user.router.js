@@ -26,4 +26,13 @@ app.post("/submit", async (req, res) => {
 	}
 });
 
+app.get("/", async (req, res) => {
+	try {
+		let users = await UserModel.find().sort({ percentage: -1 });
+		res.send(users);
+	} catch (err) {
+		res.send(err);
+	}
+});
+
 module.exports = app;
